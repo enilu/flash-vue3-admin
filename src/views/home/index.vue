@@ -8,7 +8,7 @@
           </div>
           <div class="box-title">
             <div>在线文档</div>
-            <div>Document</div>
+            <div><a target="_blank" href="http://webflash.enilu.cn/">Document</a></div>
           </div>
         </div>
       </el-col>

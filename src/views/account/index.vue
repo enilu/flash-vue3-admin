@@ -95,6 +95,7 @@ import { LOGIN_URL } from "@/config";
 import { useUserStore } from "@/stores/modules/user";
 import { updateUserPassword } from "@/api/modules/user";
 import { logoutApi } from "@/api/modules/login";
+import { encrypt } from "@/utils/aes";
 import { Cellphone, Message, Open } from "@element-plus/icons-vue";
 const router = useRouter();
 const userStore = useUserStore();
@@ -143,7 +144,14 @@ const updatePwdForm = ref<FormInstance>();
 const updatePwd = () => {
   updatePwdForm.value!.validate(async valid => {
     if (!valid) return;
-    await updateUserPassword(form);
+    console.log("password:", form.password.trim());
+    console.log("加密pass:", encrypt(form.password.trim()));
+    const params = {
+      oldPassword: encrypt(form.oldPassword),
+      password: encrypt(form.password),
+      rePassword: encrypt(form.rePassword)
+    };
+    await updateUserPassword(params);
     ElMessage.success({ message: "密码修改成功" });
 
     // 1.执行退出登录接口

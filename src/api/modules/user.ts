@@ -38,9 +38,7 @@ export const resetUserPassWord = (params: { id: string }) => {
 };
 //修改用户密码
 export const updateUserPassword = (params: { oldPassword: string; password: string; rePassword: string }) => {
-  return http.post(
-    PORT1 + `/account/updatePwd?oldPassword=${params.oldPassword}&password=${params.password}&rePassword=${params.rePassword}`
-  );
+  return http.post(PORT1 + `/account/updatePwd?oldPassword`, params);
 };
 
 // 获取用户状态字典
